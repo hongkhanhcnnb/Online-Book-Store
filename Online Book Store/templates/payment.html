@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Liber.com</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="static/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="static/css/flexslider.css" rel="stylesheet"/>
+		<link href="static/css/main.css" rel="stylesheet"/>
+		
+		<!-- Montserrat Font -->
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+		<style>			
+			p.reset a {
+				color: #998B5F !important;
+				font-weight: bold !important;
+			}
+			label.control-label {
+				font-weight: bold !important;
+			}
+									
+			* {
+				font-family: 'Montserrat', sans-serif !important;
+			}
+			.title .text, .title .text strong {
+				color: #998B5F;
+			}
+			.user-menu li a {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 600;
+				font-size: 12px;
+				text-transform: uppercase;
+				color: #0E2535;
+				padding: 10px 20px;
+				border-radius: 8px;
+				display: inline-block;
+				text-align: center;
+				text-decoration: none;
+				transition: all 0.3s ease;
+				background-color: transparent;
+			}
+		
+			.user-menu li a:hover {
+				background-color: #998B5F;
+				color: white;
+				box-shadow: 0 0 0 1px #998B5F;  /* Khung viền bằng box-shadow */
+			}
+			h4 .price {
+				display: inline !important;
+				margin-left: 5px;
+			}
+		</style>
+
+		<!-- scripts -->
+		<script src="static/js/jquery-1.7.2.min.js"></script>
+		<script src="static/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="static/js/superfish.js"></script>	
+		<script src="static/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>		
+		<div id="top-bar" class="container">
+			<div class="row">
+				<div class="span4">
+					<a href="./customerindex" class="logo pull-left"><img src="static/images/Liber_logo.png" class="site_logo" alt="" style="height: 70px; width: auto;"></a>
+				</div>
+				<div class="span8">
+					<div class="account pull-right">
+						<ul class="user-menu">
+							<li><a href="./customerindex">Quay lại</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="wrapper" class="container">
+			<section class="main-content">				
+				<div class="row">
+						<div class="span12">	
+						<h4 class="title"><span class="text"><strong>Chi tiết </strong>hóa đơn</span></h4>
+					
+						<div class="span5">
+                            
+                            <address style="line-height: 2;">
+                                    <h5 style="font-size: 14px;"><strong>Tên sách:</strong> <span style="font-size: 14px;">{{ bookData[2] }}</span><br></h5>
+                                    <strong>Mã sách: </strong> <span>{{ bookData[0] }}</span><br>
+                                    <strong>Giá: </strong> <span>{{ bookData[1] }} VND</span><br>
+                                    <strong>Số lượng: </strong> <span>{{ quantity }}</span><br>    
+                                </address style="line-height: 2;">	
+                                <h4><strong>Tổng giá: <span style="color: #998B5F;">{{ totalPrice }} VND</span></strong></h4>							
+                            <p style = "margin-top: 15px;"><strong>NOTE: </strong>Đối với mục đích giao dịch, hãy nhập thông tin thanh toán chính xác hoặc không chính xác cho phù hợp</p>
+                        </div>
+
+						{% if error_message %}
+							<div class="alert alert-danger">{{ error_message }}</div>
+						{% endif %}
+
+						<form action="{{url_for('payRoute',isbn=bookData[0],quantity=quantity,total=totalPrice)}}" class="form-stacked" method="POST">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label">Thông tin thanh toán</label>
+									<div class="controls">
+										<select id="pay" name="pay">
+											<option value="1" selected>Nhập thông tin chính xác</option>
+											<option value="null">Nhập thông tin không chính xác</option>
+										  </select>
+									</div>
+								</div>
+								<div class="control-group">
+									<input tabindex="3" class="btn btn-inverse large" type="submit" value="Mua ngay">
+                                    <hr>
+                                    <p class="reset" class="btn btn-inverse large"><a tabindex="4" href="./customerindex" title="cancel">Hủy</a></p>
+								</div>
+							</fieldset>
+						</form>			
+				
+					</div>
+				</div>
+			</section>
+			<section id="copyright">
+			</section>			
+		</div>
+		<script src="static/js/common.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#checkout').click(function (e) {
+					document.location.href = "checkout.html";
+				})
+			});
+		</script>		
+    </body>
+</html>

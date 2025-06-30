@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Fahasa.com</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="../static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="../static/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="../static/css/flexslider.css" rel="stylesheet"/>
+		<link href="../static/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../static/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="../static/js/superfish.js"></script>	
+		<script src="../static/js/jquery.scrolltotop.js"></script>
+	</head>
+    <body>		
+		<div id="top-bar" class="container">
+			<div class="row">
+				<div class="span4">
+					<a href="./customerindex" class="logo pull-left"><img src="../static/images/fahasalogo.png" class="site_logo" alt=""></a>
+				</div>
+				<div class="span8">
+					<div class="account pull-right">
+						<ul class="user-menu">	
+							<li><a href="/myorders">Quay lại</a></li>					
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="wrapper" class="container">
+			<section class="main-content">				
+				<div class="row">
+					<div class="span12">	
+						<section class="main-content">				
+							<div class="row">
+								<div class="span12">	
+								<h4 class="title"><span class="text"><strong>Xác nhận</strong> hủy đơn</span></h4>
+								{% if response == 1 %}
+									<p>
+										Đơn hàng đã được <strong>hủy thành công</strong>
+									</p>
+								{% else %}
+									<p>
+										Hủy đơn hàng <strong>không thành công</strong>! Vui lòng thử lại
+									</p>
+								{% endif %}
+							</div>
+						</section>				
+					</div>
+				</div>
+			</section>
+			<section id="copyright">
+			</section>
+		</div>
+    </body>
+</html> 

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+		<title>Liber.com</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="static/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="static/css/flexslider.css" rel="stylesheet"/>
+		<link href="static/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="static/js/jquery-1.7.2.min.js"></script>
+		<script src="static/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="static/js/superfish.js"></script>	
+		<script src="static/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+        <style>  
+            .main-content h4.title::after {
+                content: "";
+                display: block;
+                width: 100%;
+                border-bottom: 1px dashed #ccc;
+                position: relative;
+                top: -5px;  /* Điều chỉnh line gần sát chữ */
+                z-index: -1;  /* Đưa line xuống dưới */
+            }
+
+            .main-content table {
+                border-collapse: separate; /* Đảm bảo các góc được bo tròn */
+                border-spacing: 0; /* Tránh khoảng cách giữa các ô */
+                border-radius: 8px; /* Bo tròn viền của bảng */
+                overflow: hidden; /* Đảm bảo phần nội dung bên trong cũng bo góc */
+            }            
+            
+            .main-content table {
+                width: 95%;
+                margin: 0 auto;
+            }
+            .main-content h4.title span.text {
+                margin-left: 20px;
+            }
+            
+            .main-content h4.title span.line strong {
+                color: #998B5F;
+                padding: 10px;
+            }            
+            
+            .main-content h4.title {
+                margin-bottom: 0px;  /* Điều chỉnh khoảng cách giữa tiêu đề và bảng */
+                padding-bottom: 5px;   /* Đảm bảo không có padding thừa */
+                line-height: 1.2;    /* Giảm độ cao dòng để tiêu đề gần bảng hơn */
+            }            
+            
+            .main-content {
+                background-color: white;
+                border-radius: 8px;
+                padding: 5px;
+                margin-bottom:5px;
+                padding-top: 20px;
+            } 
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+        
+        body, h1, h2, h3, h4, h5, h6, p, a, td, th, span, div, li, button, input {
+            font-family: 'Montserrat', sans-serif;
+        }
+                
+        * {
+			font-family: 'Montserrat', sans-serif !important;
+		}
+        
+        #top-bar nav ul li:hover > a,
+        #top-bar nav ul li a:focus,
+        #top-bar nav ul li a:active {
+                background-color: #998B5F;
+                    color: white;
+                }
+
+        #top-bar nav ul li ul li a:hover {
+        background-color: #998B5F;
+            color: white;
+        }
+
+        #top-bar {
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 5px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 5px;
+        }
+
+        #top-bar .logo img {
+            max-height: 70px;
+            width: auto;
+        }
+
+        #top-bar nav ul {
+            border-radius: 4px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        #top-bar nav ul li {
+            border-radius: 4px;
+            position: relative;
+        }
+        #top-bar nav ul li a:hover {
+            border-radius: 5px;
+        }
+        
+        #top-bar nav ul li ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            z-index: 1000;
+            width: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        #top-bar nav ul li a:hover {
+            background-color: #998B5F;
+            color: white;
+        }
+        #top-bar nav ul li ul li a:hover {
+            background-color: #998B5F;
+            color: white;
+        }
+        .btn-custom {
+            background-color: #998B5F !important;
+            border: 1px solid #7F7048 !important;
+            color: white !important;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .btn-custom:hover {
+            background-color: #7F7048 !important;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .bold:hover {
+            color: #998B5F;
+        }                
+        
+    </style>
+</head>
+<body>      
+    <div id="top-bar" class="container">
+        <!-- Logo -->
+        <a href="/adminindex" class="logo" style="max-width: 200px; height: auto;">
+            <img src="static/images/Liber_logo.png" class="site_logo" alt="">
+        </a>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul>
+                {% if accountType == "admin" %}
+                    <li><a href="./adminindex">Trang chủ</a></li>
+                    <li><a href="./search">Tìm kiếm</a></li>
+                    <li><a href="./books">Sách</a>
+                        <ul>
+                            <li><a href="./books">Thêm sản phẩm</a></li>                                    
+                            <li><a href="./books">Cập nhật sản phẩm</a></li>
+                            <li><a href="./books">Xóa sản phẩm</a></li>            
+                        </ul>
+                    </li>
+                    <li><a href="./inventory">Tồn kho</a>
+                        <ul>
+                            <li><a href="./inventory">Xem tồn kho</a></li>                                    
+                            <li><a href="./inventory-report">Báo cáo tồn kho</a></li>                    
+                        </ul>
+                    </li>
+                    <li><a href="./payment_receipts">Phiếu thu</a>
+                        <ul>
+                            <li><a href="./payment_receipts">Danh sách phiếu thu</a></li>
+                            <li><a href="./payment_receipts/new">Tạo phiếu thu mới</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./create_invoice">Hóa đơn bán</a></li>
+                    <li><a href="./users">Người dùng</a>
+                        <ul>
+                            <li><a href="./users">Admins</a></li>                                    
+                            <li><a href="./users">Khách hàng</a></li>                    
+                        </ul>
+                    </li>
+                    <li><a href="./debt-report">Báo cáo</a></li>
+                {% elif accountType == "customer" %}
+                    <li><a href="./customerindex">Trang chủ</a></li>
+                    <li><a href="./customersearch">Tìm sách</a></li>
+                    <li><a href="./myorders">Đơn hàng</a></li>
+                {% endif %}
+                <li><a href="./myaccount">Tài khoản</a></li>
+            </ul>
+        </nav>
+        
+
+        <div class="account">
+            <ul class="user-menu">
+                <li><a href="./login" class="bold">ĐĂNG XUẤT</a></li>
+            </ul>
+        </div>
+    </div>
+        </section>
+
+
+			<section class="main-content container">
+				<div class="row">
+					<div class="span12">
+
+                        {% if accountType == "admin" %}
+                        <!-- Admin Account -->
+                        <div class="row">
+                            <div class="span12">
+                                <h4 class="title">
+                                    <span class="pull-left"><span class="text"><span class="line"><strong>Đơn hàng</strong></span></span></span>
+                                </h4>
+                                </br>
+                                    <table>
+                                        <tr>
+                                            <th>Mã Đơn hàng</th>
+                                            <th>Mã Khách hàng</th>
+                                            <th>Mã Sách</th>
+                                            <th>Tên sách</th>
+                                            <th>Số lượng</th>
+                                            <th>Tổng</th>
+                                            <th>Thời gian</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                        {% for order in Data %}
+                                            <tr>
+                                                <td>{{ order[0] }}</td>
+                                                <td>{{ order[1] }}</td>
+                                                <td>{{ order[2] }}</td>
+                                                <td>{{ order[6] }}</td>
+                                                <td>{{ order[3] }}</td>
+                                                <td>{{ order[4] }}</td>
+                                                <td>{{ order[5] }}</td>
+                                                <td>
+                                                    <form action="/cancelOrder/{{order[0]}}" method="POST">
+                                                        <button type="submit" class="btn-custom">
+                                                            Hủy đơn hàng
+                                                        </button>
+                                                    </form>
+                                                </td>                                                
+                                            </tr> 
+                                        {% endfor %}
+                                      </table>
+                                      </br>
+                            </div>						
+                        </div>
+                        {% endif %}
+                        
+                        {% if accountType == "customer" %}
+                        <!-- Customer Account -->
+                        <div class="row">
+                            <div class="span12">
+                                <h4 class="title">
+                                    <span class="pull-left"><span class="text"><span class="line"><strong>Đơn hàng</strong></span></span></span>
+                                </h4>
+                                </br>
+                                <table>
+                                    <tr>
+                                        <th>Mã sách</th>
+                                        <th>Tên sách</th>
+                                        <th>Số lượng</th>
+                                        <th>Tổng</th>
+                                        <th>Thời gian</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                    {% for order in Data %}
+                                        <tr>
+                                            <td>{{ order[0] }}</td>
+                                            <td>{{ order[4] }}</td>
+                                            <td>{{ order[1] }}</td>
+                                            <td>{{ order[2] }}</td>
+                                            <td>{{ order[3] }}</td>
+                                            <td>
+                                                <form action="/cancelOrder/{{order[0]}}" method="POST">
+                                                    <button type="submit" class="btn-custom">
+                                                        Hủy đơn hàng
+                                                    </button>
+                                                </form>
+                                            </td>                                               
+                                        </tr> 
+                                    {% endfor %}
+                                  </table>
+                                  </br>
+                            </div>						
+                        </div>
+                        {% endif %}                        
+                        
+
+					</div>				
+				</div>
+			</section>
+
+			<section id="copyright">
+			</section>
+		</div>
+		<script src="static/js/common.js"></script>
+		<script src="static/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(document).ready(function() {
+					$('.flexslider').flexslider({
+						animation: "fade",
+						slideshowSpeed: 4000,
+						animationSpeed: 600,
+						controlNav: false,
+						directionNav: true,
+						controlsContainer: ".flex-container" // the container that holds the flexslider
+					});
+				});
+			});
+		</script>
+    </body>
+</html>

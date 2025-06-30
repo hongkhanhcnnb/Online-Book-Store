@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Liber.com</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="static/css/bootstrappage.css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+		
+		<!-- global styles -->
+		<link href="static/css/flexslider.css" rel="stylesheet"/>
+		<link href="static/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="static/js/jquery-1.7.2.min.js"></script>
+		<script src="static/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="static/js/superfish.js"></script>	
+		<script src="static/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>            
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<style>
+		/* Căn chỉnh tiêu đề và form search thành một hàng ngang */
+		.search-container {
+    		display: flex;
+    		align-items: center; /* Căn chỉnh theo chiều dọc */
+    		justify-content: flex-start; /* Căn chỉnh sang bên trái */
+    		gap: 20px; /* Khoảng cách giữa tiêu đề và form */
+		}
+		form {
+   		 margin-left: 50px; /* Xóa margin trái của form */
+		}
+		.search-results {
+			margin-left: 20px;  /* Đẩy kết quả tìm kiếm cách lề trái 60px */
+			margin-right: 20px;
+		}	
+
+			.account ul li a {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 600; /* Set the font weight to bold */
+				font-size: 12px; /* Adjust font size if needed */
+				text-transform: uppercase; /* Ensure the text is properly capitalized */
+				color: #0E2535; /* Set a clear text color */
+			}
+
+			body, h1, h2, h3, h4, h5, h6, p, label, button {
+    			color: #0E2535;
+			}
+			
+			h4.title .text .line strong, 
+            .btn-inverse {
+    			color: #998B5F;
+			}
+
+			select{
+				width: 350px;  /* Độ rộng cố định cho khung */
+				height: 30px;  /* Giữ nguyên chiều cao */
+				border-radius: 4px;  /* Bo góc nhẹ */
+				border: 1px solid #ccc;  /* Viền nhẹ */
+			} 			
+			
+			input::placeholder {
+				font-size: 12px !important;
+			} 			
+						
+			select:focus, input[type="text"]:focus {
+				border-color: #007bff;  /* Màu viền xanh khi bấm vào */
+				box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+			}
+
+			body, label, select, input[type="text"], button, #top-bar nav ul li a, .account ul li a {
+				font-family: 'Montserrat', sans-serif; /* Đồng bộ font */
+			} 					
+			
+			.main-content {
+				background-color: #fff;  /* Nền trắng */
+				padding: 5px;  /* Tăng khoảng cách bên trong */
+				border: 1px solid #ddd;  /* Viền xám nhạt */
+				border-radius: 6px;  /* Bo tròn góc */
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Đổ bóng nhẹ */
+				margin-top: 5px;  /* Khoảng cách phía trên */
+				margin-bottom: 5px;
+			} 				
+			
+			h4.title .text {
+				margin-left: 40px; /* Cách lề trái 20px cho tiêu đề */
+			}
+			
+			.btn-inverse { 
+				color: #fff;
+				border: none;
+				padding: 5px 30px;
+				font-size: 12px;
+				border-radius: 10px;
+				cursor: pointer;
+			} 
+
+			#top-bar {
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 5px 5px;
+				border-bottom: 1px solid #ccc;
+				margin-bottom: auto;
+			}
+
+			#top-bar .logo img {
+				max-height: 70px;
+				width: auto;
+			}
+
+			#top-bar nav ul {
+				border-radius: 4px;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				gap: 2px;
+			}
+
+			#top-bar nav ul li {
+				border-radius: 4px;
+				position: relative; /* Giữ submenu ở đúng vị trí */
+			}
+			#top-bar nav ul li a:hover {
+				border-radius: 5px;  /* Apply a 5px border-radius when hovering */
+			}			
+			
+			#top-bar nav ul li ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: none;
+				position: absolute;
+				top: 100%; /* Ensure submenu is directly below the parent item */
+				left: 0;
+				background: #fff;
+				border-radius: 4px;
+				border: 1px solid #ccc;
+				z-index: 1000;
+				width: 200px;
+				max-height: 300px; /* Add a max height */
+				overflow-y: auto; /* Ensure content scrolls if it exceeds the height */
+			}
+			#top-bar nav ul li a:hover {
+				background-color: #998B5F; /* Màu nền khi hover */
+				color: white; /* Giữ màu chữ trắng */
+			}
+			#top-bar nav ul li ul li a:hover {
+				background-color: #998B5F; /* Màu nền khi hover trên menu con */
+				color: white; /* Giữ màu chữ trắng */
+			}
+			#top-bar nav ul li a:hover {
+				background-color: #998B5F; /* Màu nền khi hover */
+				color: white; /* Giữ màu chữ trắng */
+			}
+			#top-bar nav ul li:hover > a {
+                background-color : #998B5F;
+                color: white;
+				border-radius: 8px;
+			}
+					
+		</style>
+	</head>
+    <body>		
+		<div id="top-bar" class="container">
+			<!-- Logo -->
+			<a href="/adminindex" class="logo" style="max-width: 200px; height: auto;">
+				<img src="static/images/Liber_logo.png" class="site_logo" alt="">
+			</a>
+
+			<!-- Menu -->
+			<nav id="menu">
+				<ul>
+	
+					<li><a href="./search">Tìm kiếm</a></li>
+					<li><a href="./books">Sách</a>
+						<ul>
+							<li><a href="./books">Thêm sản phẩm</a></li>                                    
+							<li><a href="./books">Cập nhật sản phẩm</a></li>
+							<li><a href="./books">Xóa sản phẩm</a></li>            
+						</ul>
+					</li>
+					<li><a href="./inventory">Tồn kho</a>
+							<ul>
+								<li><a href="./inventory">Xem tồn kho</a></li>                                    
+								<li><a href="./inventory-report">Báo cáo tồn kho</a></li>                    
+							</ul>
+					</li>
+					<li><a href="./payment_receipts">Phiếu thu</a>
+							<ul>
+								<li><a href="./payment_receipts">Danh sách phiếu thu</a></li>
+								<li><a href="./payment_receipts/new">Tạo phiếu thu mới</a></li>
+							</ul>
+					</li>
+					<li><a href="./myorders">Đơn hàng</a>
+							<ul> 
+								<li><a href="./myorders">Danh sách đơn hàng</a></li>
+								<li><a href="./create_invoice">Hóa đơn bán</a></li>
+							</ul>
+					</li>
+					<li><a href="./users">Người dùng</a>
+							<ul>
+								<li><a href="./users">Admins</a></li>                                    
+								<li><a href="./users">Khách hàng</a></li>                    
+							</ul>
+					</li>
+					<li><a href="./debt-report">Báo cáo</a></li>    
+					<li><a href="./myaccount">Tài khoản</a></li>
+				</ul>
+			</nav>
+
+			<!-- Đăng nhập -->
+			<div class="account">
+				<ul class="user-menu">
+					<li><a href="./logout">ĐĂNG XUẤT</a></li>
+				</ul>
+			</div>
+		</div>
+
+			</section>
+			<section class="main-content container">
+				<div class="row">
+					<div class="span12">
+
+						<!-- Search -->
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left">
+										<span class="text">
+											<span class="line">
+												<strong>Search</strong>
+											</span>
+										</span>
+									</span>
+								</h4>
+								
+								<!-- Thêm một container bao quanh form và tiêu đề -->
+								<div class="search-container">
+									<form action="{{url_for('searchRoute')}}" class="form-stacked" method="POST">
+										<input type="hidden" name="next" value="/">
+										<fieldset>
+											<div class="control-group">
+												<label class="control-label">Tìm kiếm theo</label>
+												<div class="controls">
+													<select id="account" name="search">
+														<option value="title" selected>Tên</option>
+														<option value="genre">Thể loại</option>
+														<option value="author">Tác giả</option>
+													</select>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Từ khóa</label>
+												<div class="controls">
+													<input type="text" placeholder="Nhập từ khóa" id="username" class="input-xlarge" name="query" required>
+												</div>
+											</div>
+											<div class="control-group">
+												<input tabindex="3" class="btn btn-inverse large" type="submit" value="Tìm">
+											</div>
+										</fieldset>
+									</form>
+								</div>								
+									</div>							
+								</div>
+							</div>						
+						</div>
+
+
+                        <!-- Result -->
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line"><strong>Kết quả</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+									</span>
+								</h4>
+                                
+            
+								<div id="myCarousel-2" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+
+                                            <ul class="thumbnails">	
+                                                <ul class="thumbnails search-results">
+													<!-- Search by title -->
+													{% if search == "title" %}
+														{% for book in booksData %}
+															<li class="span2">
+																<div class="product-box">
+																	<span class="sale_tag"></span>
+																	<p><a href="./bookDetailsAdmin{{book[0]}}"><img src="static/images/books/book.png" alt="" /></a></p>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="title">{{book[3]}} ({{book[0]}})</a><br/>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="title">- {{book[7]}} {{book[8]}}</a><br/>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="category">{{book[4]}}</a>
+																	<p class="price">{{"{:,.0f}".format(book[6])}} VNĐ</p>
+																</div>
+															</li>
+														{% endfor %}
+													{% endif %}
+												
+													<!-- Search by genre -->
+													{% if search == "genre" %}
+														{% for book in booksData %}
+															<li class="span2">
+																<div class="product-box">
+																	<span class="sale_tag"></span>
+																	<p><a href="./bookDetailsAdmin{{book[0]}}"><img src="static/images/books/book.png" alt="" /></a></p>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="title">{{book[3]}} ({{book[0]}})</a><br/>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="title">- {{book[7]}} {{book[8]}}</a><br/>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="category">{{book[4]}}</a>
+																	<p class="price">{{"{:,.0f}".format(book[6])}} VNĐ</p>
+																</div>
+															</li>
+														{% endfor %}
+													{% endif %}
+												
+													<!-- Search by author -->
+													{% if search == "author" %}
+														{% for book in booksData %}
+															<li class="span2">
+																<div class="product-box">
+																	<span class="sale_tag"></span>
+																	<p><a href="/bookDetailsAdmin{{book[0]}}"><img src="static/images/books/book.png" alt="" /></a></p>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="title">{{book[3]}} ({{book[0]}})</a><br/>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="title">- {{book[7]}} {{book[8]}}</a><br/>
+																	<a href="/bookDetailsAdmin{{book[0]}}" class="category">{{book[4]}}</a>
+																	<p class="price">{{"{:,.0f}".format(book[6])}} VNĐ</p>
+																</div>
+															</li>
+														{% endfor %}
+													{% endif %}
+												</ul>
+					</div>				
+				</div>
+			</section>
+
+			<section id="copyright">
+			</section>
+		</div>
+		<script src="static/js/common.js"></script>
+		<script src="static/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(document).ready(function() {
+					$('.flexslider').flexslider({
+						animation: "fade",
+						slideshowSpeed: 4000,
+						animationSpeed: 600,
+						controlNav: false,
+						directionNav: true,
+						controlsContainer: ".flex-container" // the container that holds the flexslider
+					});
+				});
+			});
+		</script>
+    </body>
+</html>

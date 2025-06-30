@@ -1,0 +1,970 @@
+.dropbtn {
+    background-color: white;
+    color: #eb4800;
+    padding: 8px 20px;
+    border: 2px solid #eb4800;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    z-index: 999;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 140px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    right: 0;
+    top: 100%;
+    margin-top: 2px;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+.dropdown-content a {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: black;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 20px;
+    margin: 4px 0;
+    text-align: center;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+/* Style cho nút Đăng Kí */
+.dropdown-content a:first-child {
+    background-color: white;
+    color: #eb4800;
+    border: 2px solid #eb4800;
+}
+
+.dropdown-content a:first-child:hover {
+    background-color: #fff3f0;
+}
+
+/* Style cho nút Đăng Nhập */
+.dropdown-content a:last-child {
+    background-color: #eb4800;
+    color: white;
+}
+
+.dropdown-content a:last-child:hover {
+    background-color: #d44100;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #eb4800;
+    color: white;
+}
+
+.account.pull-right {
+    position: relative;
+    z-index: 1100;
+}
+
+.dropbtn i {
+    font-size: 11px;
+    margin-top: 1px;
+}
+
+/* Style cho carousel */
+.carousel-image {
+    max-width: 65%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flexslider {
+    margin-bottom: 30px;
+    background: #f8f8f8;
+    border: none;
+    padding: 20px 0;
+    border-radius: 12px;
+}
+
+.slides li {
+    text-align: center;
+    background: #f8f8f8;
+    padding: 10px 0;
+}
+
+#home-slider {
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+/* Ẩn các nút điều hướng mặc định của flexslider nếu không cần */
+.flex-direction-nav {
+    display: none;
+}
+
+/* Style cho phần thể loại */
+.title .line {
+    border-bottom: 2px solid #eb4800;
+    padding-bottom: 5px;
+}
+
+.title strong {
+    font-size: 20px;
+    color: #eb4800;
+}
+
+/* Style cho product box của thể loại */
+.product-box {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    margin: 10px;
+    text-align: center;
+}
+
+.product-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-box img {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-box .price {
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 8px;
+    background: #f8f8f8;
+    border-radius: 20px;
+}
+
+/* Style cho carousel thể loại */
+.myCarousel {
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.span2 {
+    flex: 0 0 auto;
+    width: calc(16.666% - 20px);
+    min-width: 160px;
+}
+
+/* Style cho nút prev/next */
+.button {
+    background: #eb4800;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.button:hover {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .span2 {
+        width: calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .span2 {
+        width: calc(50% - 20px);
+    }
+}
+
+/* Style cho tiêu đề thể loại */
+.title .line strong {
+    font-size: 20px;
+    color: #eb4800;
+}
+
+/* Style cho chữ "Books" sau tên thể loại */
+.title .line span {
+    font-size: 20px;
+    color: #333;  /* màu xám đậm cho chữ "Books" */
+}
+
+/* Style cho container của tiêu đề */
+.title {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;  /* Thêm đường kẻ phía dưới */
+}
+
+/* Hiệu ứng hover cho tiêu đề */
+.title:hover .line strong {
+    color: #d44100;  /* Màu cam đậm hơn khi hover */
+    transition: color 0.3s ease;
+}
+
+/* Style cho body và background chính */
+body {
+    background: linear-gradient(135deg, #f0f2f5 0%, #e3e6ec 100%);
+}
+
+/* Thêm một lớp overlay để tạo hiệu ứng */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
+    pointer-events: none;
+}
+
+#wrapper {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.03);
+    padding: 20px;
+    margin-top: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* Style cho top-bar */
+#top-bar {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1100;
+}
+
+/* Điều chỉnh style cho các section */
+.main-content {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.myCarousel {
+    background: #f8f8f8;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+#home-slider {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+/* Style cho footer */
+#footer-bar {
+    background: transparent;
+    margin-top: 20px;
+    padding: 15px;
+}
+
+.contact {
+    color: #eb4800;
+    font-size: 16px;
+    margin: 0 auto 20px;
+    text-align: center;
+    position: relative;
+    background: white;
+    width: fit-content;
+    padding: 8px 25px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.contact::after {
+    display: none;
+}
+
+.contact strong {
+    position: relative;
+    display: inline-block;
+}
+
+.contact strong::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #eb4800;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.contact:hover strong::after {
+    transform: scaleX(1);
+}
+
+.form-stacked {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.control-group {
+    margin-bottom: 12px;
+}
+
+.control-label {
+    display: block;
+    margin-bottom: 3px;
+    color: #555;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.controls input, 
+.controls textarea {
+    width: 100%;
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    color: #333;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.controls input:focus, 
+.controls textarea:focus {
+    border-color: #eb4800;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgba(235, 72, 0, 0.1);
+    outline: none;
+}
+
+.controls textarea {
+    height: 118px;
+    resize: vertical;
+}
+
+/* Placeholder style */
+::placeholder {
+    color: #999;
+    font-size: 11px;
+}
+
+/* Style cho nút Submit */
+.btn-inverse {
+    background: #eb4800;
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.btn-inverse:hover {
+    background: #ff5500;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(235, 72, 0, 0.2);
+} 
+
+/* Style cho form contact 2 cột */
+.contact-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    padding: 0 5px;
+}
+
+.contact-left {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.contact-right {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.contact-right textarea {
+    height: 118px;
+}
+
+/* Style cho nút submit */
+.submit-group {
+    max-width: 150px;
+    margin: 8px auto 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .contact-left, .contact-right {
+        padding: 0;
+    }
+    
+    .contact-right textarea {
+        height: 80px;
+    }
+} 
+
+/* Style cho logo */
+.logo {
+    display: flex;
+    align-items: center;
+    height: 60px;  /* Chiều cao cố định cho container */
+    padding: 5px 0;
+}
+
+.site_logo {
+    max-width: 200px;  /* Tăng kích thước logo */
+    height: auto;
+    object-fit: contain;  /* Đảm bảo logo không bị méo */
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .site_logo {
+    transform: scale(1.05);  /* Hiệu ứng hover nhẹ */
+}
+
+/* Điều chỉnh responsive cho logo */
+@media (max-width: 768px) {
+    .logo {
+        height: 50px;
+    }
+    
+    .site_logo {
+        max-width: 120px;
+    }
+} 
+
+/* Style cho search bar */
+.search-bar {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.search-form {
+    display: flex;
+    position: relative;
+}
+
+.search-form input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 2px solid #eb4800;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+.search-form button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #eb4800;
+    cursor: pointer;
+}
+
+/* Style cho top menu */
+.top-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.cart a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Style cho main menu */
+.main-menu {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #eb4800;
+} 
+
+/* Style cho banner navigation */
+.flex-direction-nav {
+    display: block !important;  /* Hiển thị nút điều hướng */
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.flex-direction-nav a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    border: 2px solid #eb4800;
+    color: #eb4800 !important;
+    text-decoration: none;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-shadow: none;
+}
+
+.flex-direction-nav a:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.flex-direction-nav a.flex-prev:before {
+    content: "\f104";  /* Font Awesome arrow left */
+}
+
+.flex-direction-nav a.flex-next:before {
+    content: "\f105";  /* Font Awesome arrow right */
+}
+
+.flex-direction-nav .flex-prev {
+    left: 10px;
+}
+
+.flex-direction-nav .flex-next {
+    right: 10px;
+}
+
+/* Hiển thị nút khi hover vào banner */
+.flexslider:hover .flex-direction-nav a {
+    opacity: 0.8;
+}
+
+.flex-direction-nav a:hover {
+    opacity: 1 !important;
+    background: #eb4800;
+    color: white !important;
+}
+
+/* Điều chỉnh style cho banner container */
+#home-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.flexslider:hover .flex-direction-nav .flex-prev {
+    left: 20px;
+}
+
+.flexslider:hover .flex-direction-nav .flex-next {
+    right: 20px;
+}
+
+/* Style cho banner phụ */
+.sub-banners {
+    margin-bottom: 30px;
+}
+
+.banner-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.banner-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.banner-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.banner-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive cho banner phụ */
+@media (max-width: 768px) {
+    .sub-banners .span4 {
+        margin-bottom: 15px;
+    }
+    
+    .banner-item {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Style cho form đăng nhập */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.login-form .control-group {
+    margin-bottom: 3px;
+}
+
+.login-form .control-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.login-form .controls input,
+.login-form .controls select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.login-form .controls input:focus,
+.login-form .controls select:focus {
+    border-color: #eb4800;
+    box-shadow: 0 0 0 2px rgba(235, 72, 0, 0.1);
+    outline: none;
+}
+
+.login-form .btn-inverse {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    color: #666;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #eb4800;
+}
+
+/* Style cho tiêu đề đăng nhập */
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title .text {
+    display: inline-block;
+    background: white;
+    padding: 8px 25px;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.title strong {
+    color: #eb4800;
+    font-size: 18px;
+}
+
+/* Style cho radio buttons */
+.account-type {
+    display: flex;
+    gap: 20px;
+    margin-top: 5px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #f8f8f8;
+    transition: all 0.3s ease;
+}
+
+.radio-label:hover {
+    background: #f0f0f0;
+}
+
+.radio-label input[type="radio"] {
+    width: auto;
+    margin: 0;
+}
+
+.radio-label span {
+    color: #555;
+    font-size: 14px;
+}
+
+/* Style khi radio được chọn */
+.radio-label input[type="radio"]:checked + span {
+    color: #eb4800;
+    font-weight: 500;
+}
+
+.radio-label:has(input[type="radio"]:checked) {
+    background: #fff3f0;
+    border: 1px solid #eb4800;
+}
+
+/* Style cho form đăng ký */
+.register-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.form-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.form-col {
+    flex: 1;
+}
+
+.register-form .control-group {
+    margin-bottom: 15px;
+}
+
+.register-form .control-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.register-form .controls input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.register-form .controls input:focus {
+    border-color: #eb4800;
+    box-shadow: 0 0 0 2px rgba(235, 72, 0, 0.1);
+    outline: none;
+}
+
+.submit-group {
+    text-align: center;
+}
+
+.submit-group .btn-inverse {
+    min-width: 200px;
+    padding: 12px 30px;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .register-form {
+        padding: 20px;
+    }
+}
+
+/* Style cho admin menu */
+.admin-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    color: #eb4800;
+    border: 2px solid #eb4800;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #eb4800;
+    color: white;
+}
+
+/* Style cho navbar admin */
+.main-menu {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #eb4800;
+}
+
+.nav-link i {
+    font-size: 14px;
+}
+
+/* Style cho dropdown menu */
+.nav-item.dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 8px 0;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 8px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background: #f8f8f8;
+    color: #eb4800;
+}

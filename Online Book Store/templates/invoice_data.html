@@ -1,0 +1,32 @@
+<body>
+    <div class="invoice-data">
+        <h2>Hóa Đơn Bán Sách</h2>
+        <p>Họ Tên Khách Hàng: {{ customer_name }}</p>
+        <p>Ngày Lập Hóa Đơn: {{ date }}</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên Sách</th>
+                    <th>Thể Loại</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn Giá</th>
+                    <th>Thành Tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detail in invoice_details %}
+                <tr>
+                    <td>{{ detail.book_name }}</td>
+                    <td>{{ detail.category }}</td>
+                    <td>{{ detail.quantity }}</td>
+                    <td>{{ detail.price }}</td>
+                    <td>{{ detail.amount }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Tổng Tiền: {{ total }}</h3>
+    </div>
+</body>

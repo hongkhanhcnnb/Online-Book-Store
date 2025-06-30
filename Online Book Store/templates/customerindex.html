@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Liber.com</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="../static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		
+		<link href="../static/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="../static/css/flexslider.css" rel="stylesheet"/>
+		<link href="../static/css/main.css" rel="stylesheet"/>
+		<link href="../static/css/dropdown.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../static/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="../static/js/superfish.js"></script>	
+		<script src="../static/js/jquery.scrolltotop.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<style>
+			.button:hover, 
+.carousel-control:hover {
+    background-color: #998B5F !important;  /* Màu khi hover */
+    color: white !important;  /* Chữ hoặc icon màu trắng */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+			button[type="submit"] {
+				background-color: #998B5F !important;
+				color: white !important;
+				border: none !important;
+				padding: 15px 30px !important;
+				border-radius: 30px !important;
+				font-size: 16px !important;
+				cursor: pointer !important;
+				transition: background-color 0.3s ease !important;
+			}
+			
+			.product-box:hover, .banner-item:hover {
+				background-color: #998B5F !important;
+				transition: background-color 0.3s ease;
+				transform: scale(1) !important;
+			}
+			* {
+				font-family: 'Montserrat', sans-serif !important;
+			}
+			.title span.line {
+				border-bottom: 2px solid #0E2535 !important;
+			}
+			.title span.text, .title strong, .contact strong {
+				color: #998B5F !important;
+				font-size: 18px !important;
+			}
+			#footer-bar {
+				background-color: #ffffff !important;
+				padding: 30px;
+				margin-bottom: 10px;
+			}			
+			#top-bar {
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 15px;  /* Giảm padding chỉ còn ngang, không giảm dọc */
+				height: 70px;     /* Giữ đủ khoảng trống cho logo */
+				border-bottom: 1px solid #ccc;
+				margin-bottom: 5px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			}
+			#top-bar .logo {
+				margin-left: 40px;
+				margin-right: auto;
+			}
+			#top-bar .logo img {
+				max-height: 70px;  /* Giữ nguyên kích thước logo */
+				width: auto;
+			}
+			
+			#top-bar nav ul {
+				list-style: none;
+				padding: 10px 10px;
+				margin: 10px;
+				display: flex;
+				justify-content: space-evenly; /* Dàn đều khoảng cách giữa các mục */
+				align-items: center; /* Căn giữa theo chiều dọc */
+				width: 100%; /* Đảm bảo menu kéo dài hết chiều ngang */
+			}			
+			
+			#top-bar nav ul li a {
+				text-decoration: none;
+				color: #0E2535;
+				font-weight: bold;
+				font-family: 'Montserrat', sans-serif;
+				font-size: 12px;  /* Đặt cỡ chữ 12px */
+				line-height: 35px;  /* Căn giữa theo chiều dọc */
+				padding: 0 10px;  /* Tạo khoảng cách bên trong */
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
+			
+			#top-bar nav ul li a:hover {
+				background-color: #998B5F;
+				color: white;
+				border-radius: 8px;
+			}			
+			
+			.account ul li a {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 600;
+				font-size: 12px;
+				text-transform: uppercase;
+				color: #0E2535;
+				font-weight: bold;
+				padding: 10px 10px;
+				margin: 10px;
+				line-height: 70px; /* Hoặc chỉnh lại cho bằng với các mục khác */
+			}
+			
+		</style>
+	</head>
+    <body>		
+		<div id="top-bar" class="container">
+			<!-- Logo -->
+			<a href="/" class="logo" style="max-width: 200px; height: auto;">
+				<img src="static/images/Liber_logo.png" class="site_logo" alt="Logo">
+			</a>
+		
+			<!-- Menu -->
+			<nav id="menu">
+				<ul>
+					<li><a href="./customerindex">Trang chủ</a></li>
+					<li><a href="./customersearch">Tìm sách</a></li>
+					<li><a href="./myorders">Đơn hàng</a></li>
+					<li><a href="./myaccount">Tài khoản</a></li>
+				</ul>
+			</nav>
+		
+			<!-- Đăng xuất -->
+			<div class="account">
+				<ul class="user-menu">
+					<li><a href="./logout">ĐĂNG XUẤT</a></li>
+				</ul>
+			</div>
+		</div>		
+		<div id="wrapper" class="container">
+			<section  class="homepage-slider" id="home-slider">
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+							<img src="../static/images/banners/banner1.webp" alt="" class="carousel-image"/>
+						</li>
+						<li>
+							<img src="../static/images/banners/banner2.webp" alt="" class="carousel-image"/>
+						</li>
+						<li>
+							<img src="../static/images/banners/banner3.webp" alt="" class="carousel-image"/>
+						</li>
+						<li>
+							<img src="../static/images/banners/banner4.webp" alt="" class="carousel-image"/>
+						</li>
+					</ul>
+				</div>			
+			</section>
+			<section class="sub-banners">
+				<div class="row">
+					<div class="span4">
+						<div class="banner-item">
+							<a href="#">
+								<img src="../static/images/banners/sub1.webp" alt="Khuyến mãi 1">
+							</a>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="banner-item">
+							<a href="#">
+								<img src="../static/images/banners/sub2.webp" alt="Khuyến mãi 2">
+							</a>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="banner-item">
+							<a href="#">
+								<img src="../static/images/banners/sub3.webp" alt="Khuyến mãi 3">
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+			<!-- GENRE-->
+			<section class="main-content">
+				<div class="row">
+					<div class="span12">													
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line"><strong>Thể loại</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+											<ul class="thumbnails">	
+												{% for genre in genreData %}											
+												<li class="span2">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<p><a href="#"><img src="../static/images/books/genre.png" alt="" /></a></p>
+														<p class="price">{{genre[0]}}</p>
+													</div>
+												</li>
+												{% endfor %}
+											</ul>
+										</div>
+									</div>							
+								</div>
+							</div>						
+						</div>
+						<br/>
+
+						<!-- Display books Genre wise -->
+						{% for genre in genreData %}
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line"><strong>{{genre[0]}}</strong> Books</span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+											<ul class="thumbnails">	
+												{% for book in booksData %}
+													{% if book[4] == genre[0] %}
+														<li class="span2">
+															<div class="product-box">
+																<span class="sale_tag"></span>
+																<p><a href="./bookdetail{{book[0]}}"><img src="../static/images/books/book.png" alt="" /></a></p>
+																<a href="/bookdetail{{book[0]}}" class="title">{{book[3]}} ({{book[0]}})</a><br/>
+																<a href="/bookdetail{{book[0]}}" class="title">- {{book[7]}}</a><br/>
+																<a href="/bookdetail{{book[0]}}" class="category">{{book[4]}}</a>
+																<p class="price">{{"{:,.0f}".format(book[10])}} VNĐ</p>
+															</div>
+														</li>	
+													{% endif %}									
+												{% endfor %}
+											</ul>
+										</div>
+									</div>							
+								</div>
+							</div>						
+						</div>
+						{% endfor %}
+
+						
+						<!-- All Books -->
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line"><strong>All </strong>Books</span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+											<ul class="thumbnails">
+												
+												{% for book in booksData %}
+													<li class="span2">
+														<div class="product-box">
+															<span class="sale_tag"></span>
+															<p><a href="/bookdetail{{book[0]}}"><img src="../static/images/books/book.png" alt="" /></a></p>
+															<a href="/bookdetail{{book[0]}}" class="title">{{book[3]}} ({{book[0]}})</a><br/>
+															<a href="/bookdetail{{book[0]}}" class="title">- {{book[7]}}</a><br/>
+															<a href="/bookdetail{{book[0]}}" class="category">{{book[4]}}</a>
+															<p class="price">{{"{:,.0f}".format(book[10])}} VNĐ</p>
+														</div>
+													</li>
+
+												{% endfor %}
+												
+											</ul>
+										</div>
+									</div>	
+								</div>
+							</div>						
+						</div>	
+					</div>				
+				</div>
+			</section>
+
+			<section id="footer-bar">
+					<div class="row">
+						<div class="span12">
+							<h3 class="contact"><span><strong>LIÊN HỆ VỚI CHÚNG TÔI</strong></span></h3>
+							<form action="{{url_for('contactUsRoute')}}" class="form-stacked" method="POST">
+								<input type="hidden" name="next" value="/">
+								<div class="contact-container">
+									<div class="contact-left">
+										<div class="control-group">
+											<label class="control-label">Họ</label>
+											<div class="controls">
+												<input type="text" placeholder="Nhập họ của bạn" class="input-xlarge" name="fname">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input type="text" placeholder="Nhập tên của bạn" class="input-xlarge" name="lname">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Email</label>
+											<div class="controls">
+												<input type="email" placeholder="Nhập email của bạn" class="input-xlarge" name="emailID">
+											</div>
+										</div>
+									</div>
+									<div class="contact-right">
+										<div class="control-group">
+											<label class="control-label">Tin nhắn</label>
+											<div class="controls">
+												<textarea name="subject" placeholder="Viết tin nhắn của bạn..." name="message"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="control-group submit-group">
+									<button type="submit" class="btn-inverse" name="submit">Gửi tin nhắn</button>
+								</div>
+							</form>
+						</div>
+					</div>
+			</section>
+			<section id="copyright">
+				<!-- <span>Copyright 2013 bootstrappage template  All right reserved.</span> -->
+			</section>
+		</div>
+
+
+		<script src="../static/js/common.js"></script>
+		<script src="../static/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(document).ready(function() {
+					$('.flexslider').flexslider({
+						animation: "fade",
+						slideshowSpeed: 4000,
+						animationSpeed: 600,
+						controlNav: false,
+						directionNav: true,
+						controlsContainer: ".flex-container" // the container that holds the flexslider
+					});
+				});
+			});
+		</script>
+		<style>
+			.contact{
+				color:#eb4800
+			}
+		</style>
+    </body>
+</html>

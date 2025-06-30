@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Inventory Report</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="static/css/bootstrappage.css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+		
+		<!-- global styles -->
+		<link href="static/css/flexslider.css" rel="stylesheet"/>
+		<link href="static/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="static/js/jquery-1.7.2.min.js"></script>
+		<script src="static/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="static/js/superfish.js"></script>	
+		<script src="static/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>            
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+        <style>    
+			* {
+				font-family: 'Montserrat', sans-serif !important;
+			}
+			body {
+				background-color: #f9f9f9;
+				color: #0E2535;
+				margin: 0;
+				padding: 0;
+			}
+			#top-bar {
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 10px 20px;
+				background-color: #fff;
+				margin-bottom: 20px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			}
+			#top-bar .logo img {
+				max-height: 50px;
+				width: auto;
+			}
+			#top-bar nav ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				gap: 20px;
+			}
+			#top-bar nav ul li {
+				position: relative;
+				border-radius: 4px;
+			}
+			#top-bar nav ul li a {
+				text-decoration: none;
+				color: #0E2535;
+				font-weight: bold;
+				padding: 10px;
+				border-radius: 4px;
+			}
+			#top-bar nav ul li a:hover {
+				background-color: #998B5F;
+				color: white;
+			}
+			#top-bar nav ul li ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				background: #fff;
+				border-radius: 4px;
+				border: 1px solid #ccc;
+				z-index: 1000;
+				width: 200px;
+				box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			#top-bar nav ul li:hover ul {
+				display: block;
+			}
+			#top-bar nav ul li ul li a {
+				padding: 10px;
+				color: #0E2535;
+				font-weight: normal;
+			}
+			#top-bar nav ul li ul li a:hover {
+				background-color: #998B5F;
+				color: white;
+			}
+			.form-container {
+				background-color: #fff;
+				border: 1px solid #ddd;
+				border-radius: 8px;
+				padding: 20px;
+				margin-bottom: 20px;
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+				width: 100%;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			h1 {
+				text-align: center;
+				color: #998B5F;
+			}
+            button {
+    			color: #0E2535;
+			}
+			button {
+				background-color: #998B5F;
+				color: white;
+				font-weight: bold;
+				border: none;
+				border-radius: 4px;
+				padding: 10px 15px;
+				cursor: pointer;
+				width: 100%;
+			}
+			button:hover {
+				background-color: #7a6c4b;
+			}
+		</style>
+
+	</head>
+<body>
+    <div id="top-bar" class="container">
+        <!-- Logo -->
+        <a href="/adminindex" class="logo" style="max-width: 200px; height: auto;">
+            <img src="static/images/Liber_logo.png" class="site_logo" alt="">
+        </a>
+
+        <!-- Menu -->
+		<nav id="menu">
+            <ul>
+
+				<li><a href="./search">Tìm kiếm</a></li>
+                <li><a href="./books">Sách</a>
+                    <ul>
+                        <li><a href="./books">Thêm sản phẩm</a></li>                                    
+                        <li><a href="./books">Cập nhật sản phẩm</a></li>
+                        <li><a href="./books">Xóa sản phẩm</a></li>            
+                    </ul>
+                </li>
+                <li><a href="./inventory">Tồn kho</a>
+                        <ul>
+                            <li><a href="./inventory">Xem tồn kho</a></li>                                    
+                            <li><a href="./inventory-report">Báo cáo tồn kho</a></li>                    
+                        </ul>
+                </li>
+                <li><a href="./payment_receipts">Phiếu thu</a>
+                        <ul>
+                            <li><a href="./payment_receipts">Danh sách phiếu thu</a></li>
+                            <li><a href="./payment_receipts/new">Tạo phiếu thu mới</a></li>
+                        </ul>
+                </li>
+				<li><a href="./myorders">Đơn hàng</a>
+				        <ul> 
+						    <li><a href="./myorders">Danh sách đơn hàng</a></li>
+						    <li><a href="./create_invoice">Hóa đơn bán</a></li>
+					    </ul>
+				</li>
+                <li><a href="./users">Người dùng</a>
+                        <ul>
+                            <li><a href="./users">Admins</a></li>                                    
+                            <li><a href="./users">Khách hàng</a></li>                    
+                        </ul>
+                </li>
+                <li><a href="./debt-report">Báo cáo</a></li>    
+                <li><a href="./myaccount">Tài khoản</a></li>
+            </ul>
+        </nav>
+
+        <!-- Đăng nhập -->
+        <div class="account">
+            <ul class="user-menu">
+                <li><a href="./logout">ĐĂNG XUẤT</a></li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <h1>Báo cáo tồn kho</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="month">Tháng:</label>
+                <input type="number" id="month" name="month" min="1" max="12" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="year">Năm:</label>
+                <input type="number" id="year" name="year" min="2000" max="2100" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #0E2535; color: white; border: none;">Tạo báo cáo </button>
+        </form>
+    </div>
+
+    {% if inventory_data %}
+    <div class="form-container">
+        <h2>Báo cáo tồn kho {{ month }}/{{ year }}</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Title</th>
+                    <th>Opening Stock</th>
+                    <th>Transactions</th>
+                    <th>Closing Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in inventory_data %}
+                <tr>
+                    <td>{{ row['bookID'] }}</td>
+                    <td>{{ row['title'] }}</td>
+                    <td>{{ row['Opening_Stock'] }}</td>
+                    <td>{{ row['Transactions'] }}</td>
+                    <td>{{ row['Closing_Stock'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</body>
+</html>

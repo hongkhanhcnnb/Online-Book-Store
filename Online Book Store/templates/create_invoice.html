@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lập Hóa Đơn</title>
+        <link rel="stylesheet" href="/static/css/main.css" />
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Cập nhật thể loại và đơn giá khi chọn sách
+                document
+                    .querySelectorAll(".book-select")
+                    .forEach(function (selectElement) {
+                        selectElement.addEventListener("change", function () {
+                            var bookID = this.value;
+                            var row = this.closest("tr");
+                            var categoryInput = row.querySelector(
+                                'input[name="category[]"]'
+                            );
+                            var priceInput = row.querySelector(
+                                'input[name="price[]"]'
+                            );
+
+                            // Gửi yêu cầu AJAX để lấy thông tin sách
+                            fetch("/get_book_info/" + bookID)
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    if (data) {
+                                        categoryInput.value = data.genre; // Cập nhật thể loại
+                                        priceInput.value = data.Selling_Price; // Cập nhật đơn giá
+                                        calculateTotal();
+                                    }
+                                })
+                                .catch((error) =>
+                                    console.error("Error:", error)
+                                );
+                        });
+                    });
+
+                // Thêm dòng vào bảng
+                // document
+                //     .getElementById("add-row")
+                //     .addEventListener("click", function () {
+                //         var table = document.querySelector(
+                //             "#invoice-table tbody"
+                //         );
+                //         var rowCount = table.rows.length + 1;
+                //         var newRow = table.insertRow();
+
+                //         newRow.innerHTML = `
+                //             <td>${rowCount}</td>
+                //             <td>
+                //                 <select name="bookID[]" class="book-select">
+                //                     {% for book in books %}
+                //                     <option value="{{ book[0] }}">{{ book[1] }}</option>
+                //                     {% endfor %}
+                //                 </select>
+                //             </td>
+                //             <td><input type="text" name="category[]" readonly /></td>
+                //             <td><input type="number" name="quantity[]" min="1" onchange="calculateTotal()" /></td>
+                //             <td><input type="number" name="price[]" readonly /></td>
+                //         `;
+
+                //         // Gắn sự kiện cho dropdown mới
+                //         newRow
+                //             .querySelector(".book-select")
+                //             .addEventListener("change", function () {
+                //                 var bookID = this.value;
+                //                 var row = this.closest("tr");
+                //                 var categoryInput = row.querySelector(
+                //                     'input[name="category[]"]'
+                //                 );
+                //                 var priceInput = row.querySelector(
+                //                     'input[name="price[]"]'
+                //                 );
+
+                //                 // Gửi yêu cầu AJAX để lấy thông tin sách
+                //                 fetch("/get_book_info/" + bookID)
+                //                     .then((response) => response.json())
+                //                     .then((data) => {
+                //                         if (data) {
+                //                             categoryInput.value = data.genre; // Cập nhật thể loại
+                //                             priceInput.value =
+                //                                 data.Selling_Price; // Cập nhật đơn giá
+                //                             calculateTotal();
+                //                         }
+                //                     })
+                //                     .catch((error) =>
+                //                         console.error("Error:", error)
+                //                     );
+                //             });
+
+                //     });
+
+                document
+    .getElementById("add-row")
+    .addEventListener("click", function () {
+        var table = document.querySelector("#invoice-table tbody");
+        var rowCount = table.rows.length + 1;
+        var newRow = table.insertRow();
+
+        newRow.innerHTML = `
+            <td>${rowCount}</td>
+            <td>
+                <select name="bookID[]" class="book-select">
+                    {% for book in books %}
+                    <option value="{{ book[0] }}">{{ book[1] }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td><input type="text" name="category[]" readonly /></td>
+            <td><input type="number" name="quantity[]" min="1" onchange="calculateTotal()" /></td>
+            <td><input type="number" name="price[]" readonly /></td>
+            <td><button type="button" class="remove-row">Xóa</button></td>
+        `;
+
+        // Gắn sự kiện cho dropdown mới
+        newRow
+            .querySelector(".book-select")
+            .addEventListener("change", function () {
+                var bookID = this.value;
+                var row = this.closest("tr");
+                var categoryInput = row.querySelector('input[name="category[]"]');
+                var priceInput = row.querySelector('input[name="price[]"]');
+
+                // Gửi yêu cầu AJAX để lấy thông tin sách
+                fetch("/get_book_info/" + bookID)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data) {
+                            categoryInput.value = data.genre; // Cập nhật thể loại
+                            priceInput.value = data.Selling_Price; // Cập nhật đơn giá
+                            calculateTotal();
+                        }
+                    })
+                    .catch((error) => console.error("Error:", error));
+            });
+
+        // Gắn sự kiện cho nút xóa
+        newRow
+            .querySelector(".remove-row")
+            .addEventListener("click", function () {
+                table.deleteRow(newRow.rowIndex - 1); // Xóa dòng
+                calculateTotal(); // Cập nhật tổng sau khi xóa
+            });
+    });
+
+                // Tính tổng tiền của hóa đơn
+                // Cập nhật giá trị khi người dùng thay đổi số lượng hoặc giá
+                document
+                    .querySelectorAll(
+                        'input[name="quantity[]"], input[name="price[]"]'
+                    )
+                    .forEach(function (inputElement) {
+                        inputElement.addEventListener("input", function () {
+                            calculateTotal(); // Tính lại tổng khi có thay đổi
+                        });
+                    });
+            });
+        </script>
+        <script>
+            function calculateTotal() {
+                let total = 0;
+                const quantityInputs = document.querySelectorAll(
+                    'input[name="quantity[]"]'
+                );
+                const priceInputs = document.querySelectorAll(
+                    'input[name="price[]"]'
+                );
+                const categoryInputs = document.querySelectorAll(
+                    'input[name="category[]"]'
+                );
+                const totalInput = document.getElementById("total");
+
+                for (let i = 0; i < quantityInputs.length; i++) {
+                    const quantity = parseInt(quantityInputs[i].value) || 0;
+                    const price = parseFloat(priceInputs[i].value) || 0;
+                    total += quantity * price;
+                }
+
+                totalInput.value = total.toFixed(2);
+                calculateRemaining();
+            }
+
+            function calculateRemaining() {
+                const total =
+                    parseFloat(document.getElementById("total").value) || 0;
+                const paid =
+                    parseFloat(document.getElementById("paid").value) || 0;
+                const remaining = paid - total;
+                document.getElementById("remaining").value =
+                    remaining.toFixed(2);
+            }
+
+            function updatePriceAndCategory() {
+                const bookSelects = document.querySelectorAll(".book-select");
+                bookSelects.forEach((select, index) => {
+                    select.addEventListener("change", function () {
+                        const bookId = select.value;
+                        const priceInput = document.querySelectorAll(
+                            'input[name="price[]"]'
+                        )[index];
+                        const categoryInput = document.querySelectorAll(
+                            'input[name="category[]"]'
+                        )[index];
+
+                        // Find book details from the books array and set the price and category
+                        const selectedBook = books.find(
+                            (book) => book[0] == bookId
+                        );
+                        if (selectedBook) {
+                            priceInput.value = selectedBook[2]; // Assuming book[2] is the price
+                            categoryInput.value = selectedBook[3]; // Assuming book[3] is the category
+                        }
+
+                        calculateTotal();
+                    });
+                });
+            }
+
+            // Add row functionality
+            document
+                .getElementById("add-row")
+                .addEventListener("click", function () {
+                    const tableBody = document.querySelector(
+                        "#invoice-table tbody"
+                    );
+                    const newRow = document.createElement("tr");
+                    newRow.innerHTML = `
+                    <td>${tableBody.children.length + 1}</td>
+                    <td>
+                        <select name="bookID[]" class="book-select">
+                            {% for book in books %}
+                            <option value="{{ book[0] }}">{{ book[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><input type="text" name="category[]" readonly /></td>
+                    <td><input type="number" name="quantity[]" min="1" onchange="calculateTotal()" /></td>
+                    <td><input type="number" name="price[]" readonly /></td>
+                `;
+                    tableBody.appendChild(newRow);
+                    updatePriceAndCategory(); // Rebind events after adding row
+                });
+
+            // Initialize price and category update for existing rows
+            window.onload = function () {
+                updatePriceAndCategory();
+            };
+        </script>
+    </head>
+    <body>
+        <div id="top-bar" class="container">
+            <!-- Logo -->
+            <a href="/adminindex" class="logo" style="max-width: 200px; height: auto;">
+                <img src="static/images/Liber_logo.png" class="site_logo" alt="">
+            </a>
+    
+            <!-- Menu -->
+			<nav id="menu">
+                <ul>
+    
+                    <li><a href="./search">Tìm kiếm</a></li>
+                    <li><a href="./books">Sách</a>
+                        <ul>
+                            <li><a href="./books">Thêm sản phẩm</a></li>                                    
+                            <li><a href="./books">Cập nhật sản phẩm</a></li>
+                            <li><a href="./books">Xóa sản phẩm</a></li>            
+                        </ul>
+                    </li>
+                    <li><a href="./inventory">Tồn kho</a>
+                            <ul>
+                                <li><a href="./inventory">Xem tồn kho</a></li>                                    
+                                <li><a href="./inventory-report">Báo cáo tồn kho</a></li>                    
+                            </ul>
+                    </li>
+                    <li><a href="./payment_receipts">Phiếu thu</a>
+                            <ul>
+                                <li><a href="./payment_receipts">Danh sách phiếu thu</a></li>
+                                <li><a href="./payment_receipts/new">Tạo phiếu thu mới</a></li>
+                            </ul>
+                    </li>
+                    <li><a href="./myorders">Đơn hàng</a>
+                            <ul> 
+                                <li><a href="./myorders">Danh sách đơn hàng</a></li>
+                                <li><a href="./create_invoice">Hóa đơn bán</a></li>
+                            </ul>
+                    </li>
+                    <li><a href="./users">Người dùng</a>
+                            <ul>
+                                <li><a href="./users">Admins</a></li>                                    
+                                <li><a href="./users">Khách hàng</a></li>                    
+                            </ul>
+                    </li>
+                    <li><a href="./debt-report">Báo cáo</a></li>    
+                    <li><a href="./myaccount">Tài khoản</a></li>
+                </ul>
+            </nav>
+    
+            <!-- Đăng nhập -->
+            <div class="account">
+                <ul class="user-menu">
+                    <li><a href="./logout">ĐĂNG XUẤT</a></li>
+            </ul>
+            </div>
+        </div>
+        
+        <div class="invoice-form">
+            <h2>Lập Hóa Đơn Bán Sách</h2>
+            <form action="/create_invoice" method="POST" id="invoice-form">
+                <!-- <label for="customer">Họ Tên Khách Hàng:</label> -->
+                <!-- <select id="customer" name="customerName">
+                    {% for customer in customers %}
+                    <option value="{{ customer[0] }}">
+                        {{ customer[1] }} {{ customer[2] }}
+                    </option>
+                    {% endfor %}
+                </select> -->
+                <label for="customerName">Họ và tên:</label>
+                <input type="text" id="customerName" name="customerName" placeholder="Nhập Họ Tên Khách Hàng" required>
+                <br><br>
+                <label for="phoneNumber">Số điện thoại:</label>
+                <input 
+                style="   
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" placeholder="Nhập số điện thoại" required>
+             
+
+                
+    
+                <label for="date">Ngày lập hóa đơn:</label>
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value="{{ today_date }}"
+                    readonly
+                />
+    
+                <table id="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Sách</th>
+                            <th>Thể loại</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <select name="bookID[]" class="book-select">
+                                    {% for book in books %}
+                                    <option value="{{ book[0] }}">
+                                        {{ book[1] }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="category[]" readonly />
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    name="quantity[]"
+                                    min="1"
+                                    onchange="calculateTotal()"
+                                />
+                            </td>
+                            <td>
+                                <input type="number" name="price[]" readonly />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <button type="button" id="add-row">Thêm sách</button>
+                <br />
+    
+                <label for="total">Tổng tiền:</label>
+                <input type="text" id="total" name="total" readonly />
+    
+                <label for="paid">Số tiền trả:</label>
+                <input
+                    type="text"
+                    id="paid"
+                    name="paid"
+                    onchange="calculateRemaining()"
+                />
+    
+                <label for="remaining">Còn lại:</label>
+                <input type="text" id="remaining" name="remaining" readonly />
+    
+                <!-- Nút Lưu Hóa Đơn -->
+                <!-- <button type="submit" id="save-invoice">Lưu Hóa Đơn</button> -->
+    
+                <!-- Nút Xuất Hóa Đơn -->
+                <button type="button" id="show-invoice" onclick="exportInvoice()">Xuất Hóa Đơn</button>
+            </form>
+        </div>
+        <script>
+            function exportInvoice() {
+                const formData = new FormData(document.getElementById("invoice-form"));
+        
+                fetch("/export_invoice", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then((response) => response.blob())
+                .then((blob) => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.style.display = "none";
+                    a.href = url;
+                    a.download = "invoice.docx";
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch((error) => console.error("Error exporting invoice:", error));
+            }
+        </script>
+    
+    </body>
+    
+
+
+<style>
+    /* Thiết lập nền và kiểu cho toàn bộ trang */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Tạo không gian cho form */
+    .invoice-form {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Tiêu đề */
+    h2 {
+        text-align: center;
+        color: #998B5F;
+        font-size: 24px;
+    }
+
+    /* Các nhãn */
+    label {
+        font-weight: bold;
+        color: #333333;
+        margin-top: 10px;
+        display: block;
+    }
+
+    /* Các trường nhập liệu */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    /* Các trường nhập liệu chỉ đọc */
+    input[readonly] {
+        background-color: #f1f1f1;
+    }
+
+    /* Các nút bấm */
+    button {
+        background-color: #998B5F;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hiệu ứng khi hover trên các nút */
+    button:hover {
+        opacity: 0.9;
+    }
+
+    /* Bảng chi tiết hóa đơn */
+    #invoice-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    #invoice-table th,
+    #invoice-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    #invoice-table th {
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    #invoice-table input[type="number"],
+    #invoice-table select {
+        width: 100%;
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    /* Các trường nhập liệu của tổng tiền và tiền còn lại */
+    #total,
+    #remaining,
+    #paid {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #f1f1f1;
+    }
+
+    /* Hiển thị nút thêm dòng */
+    #add-row {
+        background-color: #998B5F;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+    }
+
+    #add-row:hover {
+        opacity: 0.9;
+    }
+
+    /* Điều chỉnh khoảng cách cho form */
+    form {
+        padding: 20px;
+    }
+
+    /* Đảm bảo các trường nhập liệu và nút bấm có đủ khoảng cách */
+    form label,
+    form input,
+    form button {
+        margin-bottom: 15px;
+    }
+
+    /* Tạo khoảng cách giữa các phần */
+    br {
+        margin-bottom: 15px;
+    }
+
+    /* Cột thứ 2 (Sách) */
+    /* Điều chỉnh độ rộng của input trong cột "Thể loại" */
+    #invoice-table td input[type="text"] {
+        width: 100px; /* Giới hạn độ rộng của input */
+        padding: 5px;
+        font-size: 14px; /* Tùy chọn để điều chỉnh kích thước văn bản */
+    }
+
+    #top-bar {
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 10px 20px;
+				background-color: #fff;
+				margin-bottom: 20px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			}
+			#top-bar .logo img {
+				max-height: 50px;
+				width: auto;
+			}
+			#top-bar nav ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				gap: 20px;
+			}
+			#top-bar nav ul li {
+				position: relative;
+				border-radius: 4px;
+			}
+			#top-bar nav ul li a {
+				text-decoration: none;
+				color: #0E2535;
+				font-weight: bold;
+				padding: 10px;
+				border-radius: 4px;
+			}
+			#top-bar nav ul li a:hover {
+				background-color: #998B5F;
+				color: white;
+			}
+			#top-bar nav ul li ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				background: #fff;
+				border-radius: 4px;
+				border: 1px solid #ccc;
+				z-index: 1000;
+				width: 200px;
+				box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			#top-bar nav ul li:hover ul {
+				display: block;
+			}
+			#top-bar nav ul li ul li a {
+				padding: 10px;
+				color: #0E2535;
+				font-weight: normal;
+			}
+			#top-bar nav ul li ul li a:hover {
+				background-color: #998B5F;
+				color: white;
+			}
+    
+</style>
+    </body>
+</html>

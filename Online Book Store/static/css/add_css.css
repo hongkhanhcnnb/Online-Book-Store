@@ -1,0 +1,11 @@
+.original-price {
+    text-decoration: line-through;
+    color: grey;
+    font-size: 0.9em;
+}
+
+.selling-price {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
+}
